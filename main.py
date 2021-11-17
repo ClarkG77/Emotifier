@@ -16,7 +16,19 @@ class MainWindow(QMainWindow):
     def load_main_ui(self):
             logging.info("Loading main ui")
             uic.loadUi('ui/Emotifier.ui', self)
-
+            self.connect_buttons()
+    def connect_buttons(self):
+        self.pixelizeButton = self.findChild(QPushButton, 'pixilizeButton')
+        #self.pixelizeButton.clicked.connect(self.pixelize)
+        self.cartoonButton = self.findChild(QPushButton, 'cartoonButton')
+        #self.cartoonButton.clicked.connect(self.cartoonify)
+        
+        self.uploadButton = self.findChild(QPushButton, 'uploadButton')
+        #self.uploadButton.clicked.connect(self.upload)
+        self.ExitButton = self.findChild(QPushButton, 'ExitButton')
+        self.ExitButton.clicked.connect(self.closeProgram)
+    def closeProgram(self):
+        exit()
 
 def main():
     app = QApplication(sys.argv)
