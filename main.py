@@ -1,22 +1,22 @@
 import sys, logging
 from datetime import datetime
-from ibm_cloud_sdk_core.api_exception import ApiException
-from PyQt5 import uic
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import (QWidget, QLabel, QMainWindow, QPushButton, QLineEdit, 
-    QScrollArea, QVBoxLayout, QApplication, QSizePolicy, QComboBox, QSpinBox, QCheckBox, QTextEdit,QTextBrowser)
-from PyQt5.QtGui import QPixmap, QMovie, QPixmapCache
+from PyQt5 import uic    
+import tkinter as tk
+from tkinter import filedialog
+from PyQt5.QtWidgets import (QMainWindow, QPushButton, QApplication)
 
 class MainWindow(QMainWindow):
     def __init__(self, app, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.mainApp = app
         self.load_main_ui()
-
+        
     def load_main_ui(self):
             logging.info("Loading main ui")
             uic.loadUi('ui/Emotifier.ui', self)
             self.connect_buttons()
+            self.pixelizeButton.setEnabled(False)
+            self.cartoonButton.setEnabled(False)
     def connect_buttons(self):
         self.pixelizeButton = self.findChild(QPushButton, 'pixilizeButton')
         #self.pixelizeButton.clicked.connect(self.pixelize)
@@ -24,11 +24,31 @@ class MainWindow(QMainWindow):
         #self.cartoonButton.clicked.connect(self.cartoonify)
         
         self.uploadButton = self.findChild(QPushButton, 'uploadButton')
-        #self.uploadButton.clicked.connect(self.upload)
+        self.uploadButton.clicked.connect(self.askForImg)
         self.ExitButton = self.findChild(QPushButton, 'ExitButton')
         self.ExitButton.clicked.connect(self.closeProgram)
+
     def closeProgram(self):
         exit()
+
+    def askForImg(self):
+        root = tk.Tk()
+        root.withdraw()
+        filetypes = (
+            ('jpg files', '*.jpg'),('png files', '*.png'),('bmp files', '*.bmp'),
+        )
+
+        filename = filedialog.askopenfilename(
+            title='Open a file',
+            initialdir='/',
+            filetypes=filetypes)
+        print(filename)
+        if(filename.find('.jpg')>-1 or filename.find('.png')>-1 or filename.find('.bmp')>-1):
+            self.pixelizeButton.setEnabled(True)
+            self.cartoonButton.setEnabled(True)
+        else:
+            self.pixelizeButton.setEnabled(False)
+            self.cartoonButton.setEnabled(False)
 
 def main():
     app = QApplication(sys.argv)
