@@ -10,6 +10,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.mainApp = app
         self.load_main_ui()
+        self.filename = ""
         
     def load_main_ui(self):
             logging.info("Loading main ui")
@@ -38,12 +39,12 @@ class MainWindow(QMainWindow):
             ('jpg files', '*.jpg'),('png files', '*.png'),('bmp files', '*.bmp'),
         )
 
-        filename = filedialog.askopenfilename(
+        self.filename = filedialog.askopenfilename(
             title='Open a file',
             initialdir='/',
             filetypes=filetypes)
-        print(filename)
-        if(filename.find('.jpg')>-1 or filename.find('.png')>-1 or filename.find('.bmp')>-1):
+        print(self.filename)
+        if(self.filename.find('.jpg')>-1 or self.filename.find('.png')>-1 or self.filename.find('.bmp')>-1):
             self.pixelizeButton.setEnabled(True)
             self.cartoonButton.setEnabled(True)
         else:
