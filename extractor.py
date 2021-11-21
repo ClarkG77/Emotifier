@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as pp
 import cv2
 
-def objectExtraction(im, coord):
+def objectExtraction(im, coord, windowSize, closeIterations=5):
   object = cv2.Canny(im, 240, 250)
   kernel = np.ones((5,5), np.uint8)
   object = cv2.dilate(object,kernel,iterations=3)
@@ -11,35 +11,30 @@ def objectExtraction(im, coord):
   object[coord[0],coord[1]] = 2
   object[coord[0] + 1,coord[1]] = 2
 
-  numChanged = 1
-  epoch = 0
-  while numChanged != 0:
+  coords = [coord]
 
-    #if epoch % 100 == 0:
-    #  pp.figure()
-    #  pp.title(epoch)
-    #  pp.imshow(object)
-    #  pp.show()
+  while len(coords) is not 0:
+    pixel = coords.pop()
 
-    numChanged = 0
-    epoch += 1
+    # Obtain 3x3 neighborhood with pixel in the center
+    neighborhood = object[pixel[0] - 1:pixel[0] + 2,pixel[1] - 1:pixel[1] + 2]
 
-    #Find all twos.
-    twoLocs = np.where(object == 2)
-    twos = np.zeros((len(twoLocs[0]),2),dtype=np.int16)
-    for i in range(0,twos.shape[0]):
-        twos[i,0] = twoLocs[0][i]
-        twos[i,1] = twoLocs[1][i]
+    replaced = np.where(neighborhood == 0)
 
-    for pixel in twos:          
-        # Obtain 3x3 neighborhood with pixel in the center
-        neighborhood = object[pixel[0] - 1:pixel[0] + 2,pixel[1] - 1:pixel[1] + 2]
-        numChanged += np.sum(neighborhood == 0)
-        neighborhood[neighborhood == 0] = 2
+    for i in range(0, len(replaced[0])):
+        coords.append((pixel[0] - 1 + replaced[0][i], pixel[1] - 1 + replaced[1][i]))
+
+    neighborhood[neighborhood == 0] = 2
+
+  for iter in range(0,closeIterations):
+      for i in range(0, object.shape[0]):
+          for j in range(0, object.shape[1]):
+              if np.sum(object[i: i + windowSize,j: j+windowSize] == 2) / (windowSize * windowSize) > .87:
+                  object[i: i + windowSize, j: j + windowSize] = 2
 
   return object
 
 imCat = pp.imread('images\\cat.jpg')
-mid = objectExtraction(imCat,(330,530))
+mid = objectExtraction(imCat,(330,530),3, 1)
 pp.imshow(mid)
 pp.show()
