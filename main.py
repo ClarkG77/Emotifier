@@ -44,7 +44,7 @@ class MainWindow(QMainWindow):
             initialdir='/',
             filetypes=filetypes)
         print(self.filename)
-        if(self.filename.find('.jpg')>-1 or self.filename.find('.png')>-1 or self.filename.find('.bmp')>-1):
+        if(self.filename.find('.jpg')>-1 or self.filename.find('.png')>-1 or self.filename.find('.bmp')>-1 or self.filename.find('.jpeg')>-1 ):
             self.pixelizeButton.setEnabled(True)
             self.cartoonButton.setEnabled(True)
         else:
