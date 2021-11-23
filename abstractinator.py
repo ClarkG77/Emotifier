@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 from skimage.segmentation import slic
-import matplotlib.pyplot as plt
+
 
 # Environment Variables
 SUPERPIXELS = 1000
@@ -19,10 +19,3 @@ def abstract(img):
         img[indecies[0],indecies[1],2] = np.average(img[indecies[0],indecies[1],2])
 
     return img
-
-img = cv2.imread('images\\person.jpg')
-cv2.imshow("Image", img)
-cartoon = abstract(img)
-cv2.imshow("Cartoon", cartoon)
-cv2.waitKey(0)
-
