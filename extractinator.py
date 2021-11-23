@@ -14,7 +14,9 @@ def objectExtraction(im, coordinates, windowSize, closeIterations=3):
 
   if(size < 150*150):
       object = cv2.Canny(im, 10, 200)
-
+      KSize = 2
+      dilationCount = 3
+      erosionCount = 1
   elif(size >= 150*150 and size < 300*300):
       object = cv2.Canny(im, 30, 150)
       KSize = 4

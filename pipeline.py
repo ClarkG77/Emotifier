@@ -30,18 +30,18 @@ def emojiPipeline(image, coords, type, rmBack, windowSize):
             im = np.uint8(im)
     return im
 
-pp.imshow(emojiPipeline('images\\mountains.jpg',[(600,700)],'P',False,5))
+pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'P',False,3))
 pp.show()
-pp.imshow(emojiPipeline('images\\mountains.jpg',[(600,700)],'P',True,5))
-pp.show()
-
-pp.imshow(emojiPipeline('images\\mountains.jpg',[(600,700)],'A',False,5))
-pp.show()
-pp.imshow(emojiPipeline('images\\mountains.jpg',[(600,700)],'A',True,5))
+pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'P',True,3))
 pp.show()
 
-pp.imshow(emojiPipeline('images\\mountains.jpg',[(600,700)],'C',False,5))
+pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'A',False,3))
 pp.show()
-pp.imshow(emojiPipeline('images\\mountains.jpg',[(600,700)],'C',True,5))
+pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'A',True,3))
+pp.show()
+
+pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'C',False,3))
+pp.show()
+pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'C',True,3))
 pp.show()
     
