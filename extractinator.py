@@ -30,8 +30,7 @@ def objectExtraction(im, coordinates, windowSize, closeIterations=3):
   kernel = np.ones((KSize,KSize), np.uint8)
   object = cv2.dilate(object,kernel,iterations=dilationCount)
   object = cv2.erode(object,kernel,iterations=erosionCount) / 255.0 
-  pp.imshow(object)
-  pp.show()
+
   for coord in coordinates:
       object[coord[0],coord[1]] = 2
       object[coord[0] + 1,coord[1]] = 2

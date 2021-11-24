@@ -6,6 +6,7 @@ from extractinator import objectExtraction
 from cartooninator import cartoonify
 from rescalinator import resize
 
+
 def emojiPipeline(image, coords, type, rmBack, windowSize):
     im = pp.imread(image)
     im = resize(im)
@@ -30,18 +31,18 @@ def emojiPipeline(image, coords, type, rmBack, windowSize):
             im = np.uint8(im)
     return im
 
-pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'P',False,3))
-pp.show()
-pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'P',True,3))
-pp.show()
+# pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'P',False,3))
+# pp.show()
+# pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'P',True,3))
+# pp.show()
 
-pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'A',False,3))
-pp.show()
-pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'A',True,3))
-pp.show()
+# pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'A',False,3))
+# pp.show()
+# pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'A',True,3))
+# pp.show()
 
-pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'C',False,3))
-pp.show()
-pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'C',True,3))
-pp.show()
+# pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'C',False,3))
+# pp.show()
+# pp.imshow(emojiPipeline('images\\Eiffel.jpg',[(120,100),(160,100)],'C',True,3))
+# pp.show()
     

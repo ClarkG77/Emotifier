@@ -70,7 +70,7 @@
         </size>
        </property>
        <property name="text">
-        <string>Pixel Emoji</string>
+        <string>Pixelize</string>
        </property>
       </widget>
      </item>
@@ -101,7 +101,38 @@
         </size>
        </property>
        <property name="text">
-        <string>Cartoon Emoji</string>
+        <string>Cartoonify</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="abstractButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="sizeIncrement">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Abstractify</string>
        </property>
       </widget>
      </item>
@@ -110,8 +141,8 @@
    <widget class="QPushButton" name="ExitButton">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>500</y>
+      <x>280</x>
+      <y>520</y>
       <width>188</width>
       <height>23</height>
      </rect>
@@ -120,13 +151,42 @@
      <string>Exit</string>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="QCheckBox" name="foregroundCheck">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>470</y>
+      <width>171</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Foreground Detection</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="displayBox">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>771</width>
+      <width>761</width>
       <height>331</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="coordinateEntryBox">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>470</y>
+      <width>601</width>
+      <height>22</height>
      </rect>
     </property>
    </widget>
@@ -137,7 +197,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEmotifier">
