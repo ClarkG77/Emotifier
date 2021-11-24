@@ -1,12 +1,13 @@
 import sys, logging
 from datetime import datetime
 from matplotlib import pyplot as pp
-from PyQt5 import uic
+from PyQt5 import uic, QtCore
 from PyQt5.QtGui import QPixmap
 import tkinter as tk
 from tkinter import filedialog
 from PyQt5.QtWidgets import (QCheckBox, QLabel, QLineEdit, QMainWindow, QPushButton, QApplication)
 import pipeline
+
 
 SAVEDFILENAME = 'modImages/temp.png'
 SAVEDFILEPATH = 'modImages/temp.png'
@@ -74,21 +75,24 @@ class MainWindow(QMainWindow):
         if self.checkForeground:
             coords = self.getCoords()
         pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'P',self.checkForeground,3),format = 'png')
-        self.imageDisplayBox.setPixmap(QPixmap(SAVEDFILENAME))
+        tempPix = QPixmap(SAVEDFILENAME)
+        self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
     def callPipelineAbstractify(self):
         coords = []
         if self.checkForeground:
             coords = self.getCoords()
         pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'A',self.checkForeground,3))
-        self.imageDisplayBox.setPixmap(QPixmap(SAVEDFILENAME))
+        tempPix = QPixmap(SAVEDFILENAME)
+        self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
     def callPipelineCartoonify(self):
         coords = []
         if self.checkForeground:
             coords = self.getCoords()
         pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'C',self.checkForeground,3))
-        self.imageDisplayBox.setPixmap(QPixmap(SAVEDFILENAME))
+        tempPix = QPixmap(SAVEDFILENAME)
+        self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
     def askForImg(self):
         self.coordBox.clear()
@@ -106,7 +110,8 @@ class MainWindow(QMainWindow):
             self.pixelizeButton.setEnabled(True)
             self.cartoonButton.setEnabled(True)
             self.abstractButton.setEnabled(True)
-            self.imageDisplayBox.setPixmap(QPixmap(self.filename))
+            tempPix = QPixmap(self.filename)
+            self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         else:
             self.pixelizeButton.setEnabled(False)
             self.cartoonButton.setEnabled(False)
