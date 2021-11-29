@@ -11,8 +11,8 @@ def cartoonify(img):
     edges = np.abs(edges - 255)
 
     # Cartoonization
-    color2 = blur(np.uint8(img))
-    img = cv2.bitwise_and(color2, color2, mask=edges)
+    blurred = blur(np.uint8(img))
+    img = cv2.bitwise_and(blurred, blurred, mask=edges)
 
     return img
 
