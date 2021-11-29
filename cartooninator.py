@@ -18,7 +18,7 @@ def cartoonify(img):
 
 # guassian blur
 def blur(img):
-    sigma = 3
+    sigma = .1
     G = fgaussian(2 * np.ceil(3 * sigma) + 1, sigma)
     gIm = np.uint8(np.zeros([len(img),len(img[0]),3]))
     gIm[:,:,0] = ndimage.convolve(img[:,:,0], G, mode="nearest")
