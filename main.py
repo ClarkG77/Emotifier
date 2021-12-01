@@ -76,7 +76,10 @@ class MainWindow(QMainWindow):
         coords = []
         if self.checkForeground:
             coords = self.getCoords()
-        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'P',self.checkForeground,3,int(int(self.fillBox.text()))),format = 'png')
+        fill = 0
+        if str.isdigit(self.fillBox.text()):
+            fill = int(self.fillBox.text())
+        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'P',self.checkForeground,3,fill),format = 'png')
         tempPix = QPixmap(SAVEDFILENAME)
         self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
@@ -84,7 +87,10 @@ class MainWindow(QMainWindow):
         coords = []
         if self.checkForeground:
             coords = self.getCoords()
-        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'A',self.checkForeground,3,int(self.fillBox.text())))
+        fill = 0
+        if str.isdigit(self.fillBox.text()):
+            fill = int(self.fillBox.text())
+        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'A',self.checkForeground,3,fill))
         tempPix = QPixmap(SAVEDFILENAME)
         self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
@@ -92,7 +98,10 @@ class MainWindow(QMainWindow):
         coords = []
         if self.checkForeground:
             coords = self.getCoords()
-        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'C',self.checkForeground,3,int(self.fillBox.text())))
+        fill = 0
+        if str.isdigit(self.fillBox.text()):
+            fill = int(self.fillBox.text())
+        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'C',self.checkForeground,3,fill))
         tempPix = QPixmap(SAVEDFILENAME)
         self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         

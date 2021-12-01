@@ -20,8 +20,6 @@ def objectExtraction(im, coordinates, closeIterations):
 	object = cv2.erode(object,kernel,iterations=erosionCount) / 255.0
 
 
-	expandSet = []
-
 	for coord in coordinates:
 
 		object[coord[0],coord[1]] = 2
@@ -44,9 +42,6 @@ def objectExtraction(im, coordinates, closeIterations):
 			tempNeighborhood = np.isin(neighborhood, np.abs(fill - 1))
 			if not np.any(tempNeighborhood):
 				replaced = np.where(neighborhood == fill)
-			else:
-				if not pixel in expandSet:
-					expandSet.append(pixel)
 
 			if(replaced != None):
 				for i in range(0, len(replaced[0])):
