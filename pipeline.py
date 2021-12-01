@@ -10,7 +10,7 @@ from rescalinator import resize
 def emojiPipeline(image, coords, type, rmBack, windowSize):
     im = pp.imread(image)
     im = resize(im)
-    if im.dtype==np.float64:
+    if np.any(im[0]<1) and np.any(im[0]>0):
         im = np.floor(im*255)
     for i, coord in enumerate(coords):
         coords[i] = (int(coord[0]/4),int(coord[1]/4))

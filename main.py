@@ -116,6 +116,11 @@ class MainWindow(QMainWindow):
             self.pixelizeButton.setEnabled(False)
             self.cartoonButton.setEnabled(False)
             self.abstractButton.setEnabled(False)
+            self.checkForeground = False
+            self.coordBox.setEnabled(False)
+            self.foregroundDetectionCheckButton.setChecked(False)
+            self.coordBox.clear()
+            self.imageDisplayBox.setPixmap(QPixmap())
 
 def main():
     app = QApplication(sys.argv)
