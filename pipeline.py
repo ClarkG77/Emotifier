@@ -14,6 +14,10 @@ def emojiPipeline(image, coords, type, rmBack, windowSize, closeIterations):
         im = objectExtraction(im, coords, closeIterations)
 
     im = resize(im)
+    if np.any(im[0]<1) and np.any(im[0]>0):
+        im = np.floor(im*255)
+    for i, coord in enumerate(coords):
+        coords[i] = (int(coord[0]/4),int(coord[1]/4))
 
     if type == 'C':
         im = np.int32(im)
