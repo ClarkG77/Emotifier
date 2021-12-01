@@ -142,7 +142,7 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>520</y>
+      <y>530</y>
       <width>188</width>
       <height>23</height>
      </rect>
@@ -190,6 +190,29 @@
      </rect>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>500</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Fill Iterations</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="FillCount">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>500</y>
+      <width>601</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -197,7 +220,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEmotifier">

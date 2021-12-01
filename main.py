@@ -41,6 +41,8 @@ class MainWindow(QMainWindow):
         self.foregroundDetectionCheckButton = self.findChild(QCheckBox, 'foregroundCheck')
         self.foregroundDetectionCheckButton.stateChanged.connect(self.toggle_foreground_check)
         self.coordBox = self.findChild(QLineEdit, 'coordinateEntryBox')
+
+        self.fillBox = self.findChild(QLineEdit, 'FillCount')
         
         self.uploadButton = self.findChild(QPushButton, 'uploadButton')
         self.uploadButton.clicked.connect(self.askForImg)
@@ -66,7 +68,7 @@ class MainWindow(QMainWindow):
             try:
                 temp = coord.split(',')
                 coords.append((int(temp[0]),int(temp[1])))
-            except e:
+            except:
                 raise("Formatting Error")
         return coords
         
@@ -74,7 +76,7 @@ class MainWindow(QMainWindow):
         coords = []
         if self.checkForeground:
             coords = self.getCoords()
-        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'P',self.checkForeground,3),format = 'png')
+        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'P',self.checkForeground,3,int(int(self.fillBox.text()))),format = 'png')
         tempPix = QPixmap(SAVEDFILENAME)
         self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
@@ -82,7 +84,7 @@ class MainWindow(QMainWindow):
         coords = []
         if self.checkForeground:
             coords = self.getCoords()
-        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'A',self.checkForeground,3))
+        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'A',self.checkForeground,3,int(self.fillBox.text())))
         tempPix = QPixmap(SAVEDFILENAME)
         self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
@@ -90,7 +92,7 @@ class MainWindow(QMainWindow):
         coords = []
         if self.checkForeground:
             coords = self.getCoords()
-        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'C',self.checkForeground,3))
+        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'C',self.checkForeground,3,int(self.fillBox.text())))
         tempPix = QPixmap(SAVEDFILENAME)
         self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
