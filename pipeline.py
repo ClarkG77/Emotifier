@@ -16,8 +16,7 @@ def emojiPipeline(image, coords, type, rmBack, windowSize, closeIterations):
         im[np.isnan(im)] = 0
         im = resize(im)
         im[im == -1] = np.nan
-        pp.imshow(im)
-        pp.show()
+
     else:
         im = resize(im)
 
