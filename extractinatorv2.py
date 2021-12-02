@@ -12,7 +12,9 @@ def objectExtraction(im, coordinates, closeIterations):
 	erosionCount = 2
 	object = cv2.Canny(im, 75, 225)
 	size = im.shape[0]*im.shape[1]
-
+	if size >= 1920 * 1080:
+		dilationCount = 4
+		erosionCount = 2
 
 	
 	kernel = np.ones((KSize,KSize), np.uint8)

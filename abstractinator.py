@@ -4,11 +4,10 @@ from skimage.segmentation import slic
 
 
 # Environment Variables
-SUPERPIXELS = 1000
 SIGMA = 0
 COMPACTNESS = .1
 
-def abstract(img):    
+def abstract(img, SUPERPIXELS):    
     superpixels = slic(img, n_segments = SUPERPIXELS, sigma = SIGMA,compactness=COMPACTNESS)
     # go through every pixel in superpixels and average them from the image should be able to splice 
     for numSegements in range(SUPERPIXELS):

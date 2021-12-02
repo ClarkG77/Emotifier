@@ -43,6 +43,8 @@ class MainWindow(QMainWindow):
         self.coordBox = self.findChild(QLineEdit, 'coordinateEntryBox')
 
         self.fillBox = self.findChild(QLineEdit, 'FillCount')
+        self.windowBox = self.findChild(QLineEdit, 'WindowLine')
+        self.pixelLine = self.findChild(QLineEdit, 'SuperpixelLine')
         
         self.uploadButton = self.findChild(QPushButton, 'uploadButton')
         self.uploadButton.clicked.connect(self.askForImg)
@@ -74,12 +76,20 @@ class MainWindow(QMainWindow):
         
     def callPipelinePixelize(self):
         coords = []
+
         if self.checkForeground:
             coords = self.getCoords()
+
         fill = 0
         if str.isdigit(self.fillBox.text()):
             fill = int(self.fillBox.text())
-        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'P',self.checkForeground,3,fill),format = 'png')
+        windowSize = 3
+        if str.isdigit(self.windowBox.text()):
+            windowSize = int(self.windowBox.text())
+        pixels = 1000
+        if str.isdigit(self.pixelLine.text()):
+            pixels = int(self.pixelLine.text())
+        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'P',self.checkForeground,windowSize,fill,pixels),format = 'png')
         tempPix = QPixmap(SAVEDFILENAME)
         self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
@@ -90,7 +100,13 @@ class MainWindow(QMainWindow):
         fill = 0
         if str.isdigit(self.fillBox.text()):
             fill = int(self.fillBox.text())
-        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'A',self.checkForeground,3,fill))
+        windowSize = 3
+        if str.isdigit(self.windowBox.text()):
+            windowSize = int(self.windowBox.text())
+        pixels = 1000
+        if str.isdigit(self.pixelLine.text()):
+            pixels = int(self.pixelLine.text())
+        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'A',self.checkForeground,windowSize,fill,pixels))
         tempPix = QPixmap(SAVEDFILENAME)
         self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         
@@ -101,7 +117,13 @@ class MainWindow(QMainWindow):
         fill = 0
         if str.isdigit(self.fillBox.text()):
             fill = int(self.fillBox.text())
-        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'C',self.checkForeground,3,fill))
+        windowSize = 3
+        if str.isdigit(self.windowBox.text()):
+            windowSize = int(self.windowBox.text())
+        pixels = 1000
+        if str.isdigit(self.pixelLine.text()):
+            pixels = int(self.pixelLine.text())
+        pp.imsave(SAVEDFILEPATH,pipeline.emojiPipeline(self.filename,coords,'C',self.checkForeground,windowSize,fill,pixels))
         tempPix = QPixmap(SAVEDFILENAME)
         self.imageDisplayBox.setPixmap(tempPix.scaled(761, 331, QtCore.Qt.KeepAspectRatio))
         

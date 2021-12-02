@@ -1,7 +1,6 @@
 import numpy as np
 def pixelizer(im, windowSize):
     pixelized = np.zeros(im.shape)
-    windowSize = windowSize + int(im.shape[0] * im.shape[1] / 100000)
     for i in range(0, im.shape[0], windowSize):
         for j in range(0, im.shape[1], windowSize):
             pixelized[i:i + windowSize,j:j + windowSize,0] = np.sum(im[i:i + windowSize,j:j + windowSize,0]) / (windowSize * windowSize)

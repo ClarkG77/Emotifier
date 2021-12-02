@@ -7,7 +7,7 @@ from cartooninator import cartoonify
 from rescalinator import resize
 
 
-def emojiPipeline(image, coords, type, rmBack, windowSize, closeIterations):
+def emojiPipeline(image, coords, type, rmBack, windowSize, closeIterations, superpixels):
 
     im = pp.imread(image)
     if rmBack:
@@ -15,7 +15,7 @@ def emojiPipeline(image, coords, type, rmBack, windowSize, closeIterations):
     if rmBack:
         im[np.isnan(im)] = 0
         im = resize(im)
-        im[im == -1] = np.nan
+        im[im == 0] = np.nan
 
     else:
         im = resize(im)
@@ -37,17 +37,16 @@ def emojiPipeline(image, coords, type, rmBack, windowSize, closeIterations):
 
     if type == 'A':
         im[np.isnan(im)] = 0
-        im = abstract(im)
-        im[im == -1] = np.nan
+        im = abstract(im,superpixels)
+        im[im == 0] = np.nan
         if not rmBack:
             im = np.uint8(im)
 
     elif type == 'P':
 
         im[np.isnan(im)] = 0
-        im = abstract(im)
-        im[im == -1] = np.nan
         im = pixelizer(im,windowSize)
+        im[im == 0] = np.nan
         if not rmBack:
             im = np.uint8(im)
 
