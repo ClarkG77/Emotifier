@@ -1,6 +1,5 @@
 import numpy as np
 import cv2
-from matplotlib import pyplot as pp
 
 def objectExtraction(im, coordinates, windowSize, closeIterations=3):
   im = np.uint8(im)
