@@ -20,9 +20,6 @@ def emojiPipeline(image, coords, type, rmBack, windowSize, closeIterations, supe
     else:
         im = resize(im)
 
-    if np.any(im[0]<1) and np.any(im[0]>0):
-        im = np.floor(im*255)
-
     if type == 'C':
         if rmBack:
             im[np.isnan(im)] = 0
