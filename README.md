@@ -32,3 +32,4 @@ Example of coordinate input 100,650;300,200
 This gives two coordinates with the x and y coordinate seperated by a comma and the coordinate pairs seperated by a semicolon.
 
 Fill Iterations takes in an integer and will iteratively fill the image to close holes within the foreground. This tends to be a number between 1 - 10
+![Emotifier GUI](images/Emotifier.png)

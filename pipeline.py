@@ -26,7 +26,7 @@ def emojiPipeline(image, coords, type, rmBack, windowSize, closeIterations, supe
     if type == 'C':
         im[np.isnan(im)] = 0
         im = np.uint8(im)
-        im = cartoonify(im)
+        im = np.float64(cartoonify(im))
         im[im == 0] = np.nan
 
     if rmBack:        
